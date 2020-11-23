@@ -38,7 +38,7 @@ prefix_proc = proc do |message|
   prefix = PREFIXES[message.channel.id] || '.'
 
   # We use [prefix.size..-1] so we can handle prefixes of any length
-  message.content[prefix.size..-1] if message.content.start_with?(prefix)
+  message.content[prefix.size..] if message.content.start_with?(prefix)
 end
 
 # Setup a new bot with our prefix proc
