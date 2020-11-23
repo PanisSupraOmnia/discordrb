@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Discordrb
-  # Utility class for wrapping paginated endpoints. It is [Enumerable](https://ruby-doc.org/core-2.5.1/Enumerable.html),
+  # Utility class for wrapping paginated endpoints. It is [Enumerable](https://ruby-doc.org/core-2.7.2/Enumerable.html),
   # similar to an `Array`, so most of the same methods can be used to filter the results of the request
   # that it wraps. If you simply want an array of all of the results, `#to_a` can be called.
   class Paginator
