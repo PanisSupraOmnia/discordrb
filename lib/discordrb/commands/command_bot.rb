@@ -330,7 +330,7 @@ module Discordrb::Commands
       return nil if chain.empty?
 
       args = chain.split(' ')
-      execute_command(args[0].to_sym, event, args[1..])
+      execute_command(args[0].to_sym, event, args.drop(1))
     end
 
     # Sets the permission level of a user
