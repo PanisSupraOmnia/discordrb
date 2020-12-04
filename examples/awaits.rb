@@ -68,9 +68,7 @@ bot.message(content: '!time') do |event|
 
   # Add an await for a ReactionAddEvent, that will only trigger for reactions
   # that match our CROSS_MARK emoji. To prevent the bot from cluttering up threads, we destroy the await after 30 seconds.
-  bot.add_await!(Discordrb::Events::ReactionAddEvent, message: message, emoji: CROSS_MARK, timeout: 30) do |_reaction_event|
-    message.delete # Delete the bot message
-  end
+  bot.add_await!(Discordrb::Events::ReactionAddEvent, message: message, emoji: CROSS_MARK, timeout: 30, &:delete)
   # This code executes after our await concludes, or when the timeout runs out.
   # For demonstration purposes, it just prints "Await destroyed.". In your actual code you might want to edit the message or something alike.
   puts 'Await destroyed.'
