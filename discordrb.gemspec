@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'discordrb/version'
+require_relative 'lib/discordrb/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'discordrb'
@@ -15,12 +13,25 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/shardlab/discordrb'
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features|examples|lib/discordrb/webhooks)/}) }
-  spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.metadata = {
-    'changelog_uri' => 'https://github.com/shardlab/discordrb/blob/master/CHANGELOG.md'
+  spec.metadata      = {
+    'bug_tracker_uri' => 'https://github.com/shardlab/discordrb/issues',
+    'changelog_uri' => 'https://github.com/shardlab/discordrb/blob/main/CHANGELOG.md',
+    'documentation_uri' => "https://drb.shardlab.dev/v#{spec.version}",
+    'homepage_uri' => spec.homepage,
+    'mailing_list_uri' => 'https://discord.gg/cyK3Hjm',
+    'source_code_uri' => 'https://github.com/shardlab/discordrb',
+    'wiki_uri' => 'https://github.com/shardlab/discordrb/wiki'
   }
+
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject do |f|
+      (f == __FILE__) || f.match(%r{\A(?:(?:test|spec|features|examples|bin|lib/discordrb/webhooks)/|\.(?:git|circleci|rspec|rubocop|overcommit))})
+    end
+  end
+  spec.bindir        = 'exe'
+  spec.executables   = []
   spec.require_paths = ['lib']
 
   spec.add_dependency 'ffi', '>= 1.9.24'

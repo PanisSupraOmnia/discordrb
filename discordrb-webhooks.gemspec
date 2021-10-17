@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'discordrb/webhooks/version'
+require_relative 'lib/discordrb/webhooks/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'discordrb-webhooks'
@@ -15,9 +13,19 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/shardlab/discordrb'
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files -z lib/discordrb/webhooks/`.split("\x0") + ['lib/discordrb/webhooks.rb']
+  spec.metadata      = {
+    'bug_tracker_uri' => 'https://github.com/shardlab/discordrb/issues',
+    'changelog_uri' => 'https://github.com/shardlab/discordrb/blob/main/CHANGELOG.md',
+    'documentation_uri' => "https://drb.shardlab.dev/v#{spec.version}/Discordrb/Webhooks.html",
+    'homepage_uri' => spec.homepage,
+    'mailing_list_uri' => 'https://discord.gg/cyK3Hjm',
+    'source_code_uri' => 'https://github.com/shardlab/discordrb',
+    'wiki_uri' => 'https://github.com/shardlab/discordrb/wiki'
+  }
+
+  spec.files         = `git ls-files -z lib/discordrb/webhooks/`.split("\x0") + ['lib/discordrb/webhooks.rb', 'discordrb-webhooks.gemspec']
   spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables   = []
   spec.require_paths = ['lib']
 
   spec.add_dependency 'rest-client', '>= 2.0.0'
