@@ -146,7 +146,7 @@ module Discordrb
     # @param reason [String] The reason the user's roles are being changed.
     def set_roles(role, reason = nil)
       role_ids = role_id_array(role)
-      API::Server.update_member(@bot.token, @server_id, @user.id, roles: role_ids, reason: reason)
+      API::Server.update_member(@bot.token, @server_id, @user.id, roles: role_ids, reason:)
     end
 
     # Adds and removes roles from a member.
@@ -163,7 +163,7 @@ module Discordrb
       old_role_ids = resolve_role_ids
       new_role_ids = (old_role_ids - remove_role_ids + add_role_ids).uniq
 
-      API::Server.update_member(@bot.token, @server_id, @user.id, roles: new_role_ids, reason: reason)
+      API::Server.update_member(@bot.token, @server_id, @user.id, roles: new_role_ids, reason:)
     end
 
     # Adds one or more roles to this member.
@@ -177,7 +177,7 @@ module Discordrb
       else
         old_role_ids = resolve_role_ids
         new_role_ids = (old_role_ids + role_ids).uniq
-        API::Server.update_member(@bot.token, @server_id, @user.id, roles: new_role_ids, reason: reason)
+        API::Server.update_member(@bot.token, @server_id, @user.id, roles: new_role_ids, reason:)
       end
     end
 
@@ -192,7 +192,7 @@ module Discordrb
       else
         old_role_ids = resolve_role_ids
         new_role_ids = old_role_ids.reject { |i| role_ids.include?(i) }
-        API::Server.update_member(@bot.token, @server_id, @user.id, roles: new_role_ids, reason: reason)
+        API::Server.update_member(@bot.token, @server_id, @user.id, roles: new_role_ids, reason:)
       end
     end
 
@@ -250,7 +250,7 @@ module Discordrb
     # @param message_days [Integer] How many days worth of messages sent by the member should be deleted.
     # @param reason [String] The reason this member is being banned.
     def ban(message_days = 0, reason: nil)
-      server.ban(@user, message_days, reason: reason)
+      server.ban(@user, message_days, reason:)
     end
 
     # Unbans this member from the server.
@@ -283,7 +283,7 @@ module Discordrb
       if @user.current_bot?
         API::User.change_own_nickname(@bot.token, @server_id, nick, reason)
       else
-        API::Server.update_member(@bot.token, @server_id, @user.id, nick: nick, reason: nil)
+        API::Server.update_member(@bot.token, @server_id, @user.id, nick:, reason: nil)
       end
     end
 

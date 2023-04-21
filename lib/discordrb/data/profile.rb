@@ -13,7 +13,7 @@ module Discordrb
     # Sets the bot's username.
     # @param username [String] The new username.
     def username=(username)
-      update_profile_data(username: username)
+      update_profile_data(username:)
     end
 
     alias_method :name=, :username=
@@ -30,7 +30,7 @@ module Discordrb
         avatar_string += Base64.strict_encode64(avatar.read)
         update_profile_data(avatar: avatar_string)
       else
-        update_profile_data(avatar: avatar)
+        update_profile_data(avatar:)
       end
     end
 

@@ -224,7 +224,7 @@ module Discordrb
     # @param url [String, nil] the URL to connect to or nil if one should be obtained from Discord.
     def inject_reconnect(url = nil)
       # When no URL is specified, the data should be nil, as is the case with Discord-sent packets.
-      data = url ? { url: url } : nil
+      data = url ? { url: } : nil
 
       handle_message({
         op: Opcodes::RECONNECT,
@@ -309,11 +309,11 @@ module Discordrb
     def send_identify(token, properties, compress, large_threshold, shard_key = nil, intents = ALL_INTENTS)
       data = {
         # Don't send a v anymore as it's entirely determined by the URL now
-        token: token,
-        properties: properties,
-        compress: compress,
-        large_threshold: large_threshold,
-        intents: intents
+        token:,
+        properties:,
+        compress:,
+        large_threshold:,
+        intents:
       }
 
       # Don't include the shard key at all if it is nil as Discord checks for its mere existence
@@ -331,10 +331,10 @@ module Discordrb
     # @param afk [true, false] Whether the status was set due to inactivity on the user's part.
     def send_status_update(status, since, game, afk)
       data = {
-        status: status,
-        since: since,
-        game: game,
-        afk: afk
+        status:,
+        since:,
+        game:,
+        afk:
       }
 
       send_packet(Opcodes::PRESENCE, data)
@@ -350,9 +350,9 @@ module Discordrb
     def send_voice_state_update(server_id, channel_id, self_mute, self_deaf)
       data = {
         guild_id: server_id,
-        channel_id: channel_id,
-        self_mute: self_mute,
-        self_deaf: self_deaf
+        channel_id:,
+        self_mute:,
+        self_deaf:
       }
 
       send_packet(Opcodes::VOICE_STATE, data)
@@ -387,9 +387,9 @@ module Discordrb
     # @param seq [Integer] The packet sequence of the packet after which the events should be replayed.
     def send_resume(token, session_id, seq)
       data = {
-        token: token,
-        session_id: session_id,
-        seq: seq
+        token:,
+        session_id:,
+        seq:
       }
 
       send_packet(Opcodes::RESUME, data)
@@ -405,8 +405,8 @@ module Discordrb
     def send_request_members(server_id, query, limit)
       data = {
         guild_id: server_id,
-        query: query,
-        limit: limit
+        query:,
+        limit:
       }
 
       send_packet(Opcodes::REQUEST_MEMBERS, data)
@@ -570,7 +570,7 @@ module Discordrb
       LOGGER.debug('Obtained socket')
 
       # Initialise some properties
-      @handshake = ::WebSocket::Handshake::Client.new(url: url) # Represents the handshake between us and the server
+      @handshake = ::WebSocket::Handshake::Client.new(url:) # Represents the handshake between us and the server
       @handshaked = false # Whether the handshake has finished yet
       @pipe_broken = false # Whether we've received an EPIPE at any time
       @closed = false # Whether the websocket is currently closed
@@ -832,7 +832,7 @@ module Discordrb
       end
 
       # Create the frame we're going to send
-      frame = ::WebSocket::Frame::Outgoing::Client.new(data: data, type: type, version: @handshake.version, code: code)
+      frame = ::WebSocket::Frame::Outgoing::Client.new(data:, type:, version: @handshake.version, code:)
 
       # Try to send it
       begin

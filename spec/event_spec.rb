@@ -103,7 +103,7 @@ describe Discordrb::Events do
   describe Discordrb::Events::MessageEvent do
     let(:bot) { double }
     let(:channel) { double }
-    let(:message) { double('message', channel: channel) }
+    let(:message) { double('message', channel:) }
 
     subject :event do
       described_class.new(message, bot)
@@ -120,8 +120,8 @@ describe Discordrb::Events do
         spoiler = double(:spoiler)
         allow(file).to receive(:is_a?).with(File).and_return(true)
 
-        expect(event).to receive(:send_file).with(file, caption: '', filename: filename, spoiler: spoiler)
-        event.attach_file(file, filename: filename, spoiler: spoiler)
+        expect(event).to receive(:send_file).with(file, caption: '', filename:, spoiler:)
+        event.attach_file(file, filename:, spoiler:)
         handler.after_call(event)
       end
     end
@@ -239,7 +239,7 @@ describe Discordrb::Events do
       end
 
       it 'matches server object' do
-        handler = described_class.new({ server: server }, nil)
+        handler = described_class.new({ server: }, nil)
         expect(handler.matches?(event)).to be_truthy
       end
     end
@@ -260,7 +260,7 @@ describe Discordrb::Events do
   end
 
   describe Discordrb::Events::ServerEvent do
-    let(:bot) { double('bot', server: server) }
+    let(:bot) { double('bot', server:) }
     let(:server) { double }
 
     subject(:event) do
@@ -333,7 +333,7 @@ describe Discordrb::Events do
   end
 
   describe Discordrb::Events::ServerEventHandler do
-    let(:event) { double('event', is_a?: true, emoji: emoji, server: server) }
+    let(:event) { double('event', is_a?: true, emoji:, server:) }
     let(:server) { double('server', name: SERVER_NAME, id: SERVER_ID) }
     let(:emoji) { double('emoji', id: EMOJI1_ID, name: EMOJI1_NAME) }
 
@@ -341,7 +341,7 @@ describe Discordrb::Events do
   end
 
   describe Discordrb::Events::ServerEmojiCDEventHandler do
-    let(:event) { double('event', is_a?: true, emoji: emoji, server: server) }
+    let(:event) { double('event', is_a?: true, emoji:, server:) }
     let(:server) { double('server', name: SERVER_NAME, id: SERVER_ID) }
     let(:emoji) { double('emoji', id: EMOJI1_ID, name: EMOJI1_NAME) }
 
@@ -350,7 +350,7 @@ describe Discordrb::Events do
   end
 
   describe Discordrb::Events::ServerEmojiUpdateEventHandler do
-    let(:event) { double('event', is_a?: true, emoji: emoji_new, old_emoji: emoji_old, server: server) }
+    let(:event) { double('event', is_a?: true, emoji: emoji_new, old_emoji: emoji_old, server:) }
     let(:server) { double('server', name: SERVER_NAME, id: SERVER_ID) }
     let(:emoji_old) { double('emoji_old', id: EMOJI1_ID, name: EMOJI2_NAME) }
     let(:emoji_new) { double('emoji_new', name: EMOJI1_NAME) }

@@ -77,7 +77,7 @@ module Discordrb::Voice
     # @param options [String] ffmpeg options to pass after the -i flag
     # @return [IO] the audio, encoded as s16le PCM
     def encode_file(file, options = '')
-      command = ffmpeg_command(input: file, options: options)
+      command = ffmpeg_command(input: file, options:)
       IO.popen(command)
     end
 
@@ -87,7 +87,7 @@ module Discordrb::Voice
     # @param options [String] ffmpeg options to pass after the -i flag
     # @return [IO] the audio, encoded as s16le PCM
     def encode_io(io, options = '')
-      command = ffmpeg_command(options: options)
+      command = ffmpeg_command(options:)
       IO.popen(command, in: io)
     end
 

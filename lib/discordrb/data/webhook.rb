@@ -72,7 +72,7 @@ module Discordrb
     # Sets the webhook's name.
     # @param name [String] The webhook's new name.
     def name=(name)
-      update_webhook(name: name)
+      update_webhook(name:)
     end
 
     # Updates the webhook if you need to edit more than 1 attribute.
@@ -138,7 +138,7 @@ module Discordrb
     def execute(content: nil, username: nil, avatar_url: nil, tts: nil, file: nil, embeds: nil, allowed_mentions: nil, wait: true, builder: nil, components: nil)
       raise Discordrb::Errors::UnauthorizedWebhook unless @token
 
-      params = { content: content, username: username, avatar_url: avatar_url, tts: tts, file: file, embeds: embeds, allowed_mentions: allowed_mentions }
+      params = { content:, username:, avatar_url:, tts:, file:, embeds:, allowed_mentions: }
 
       builder ||= Webhooks::Builder.new
       view = Webhooks::View.new
@@ -175,7 +175,7 @@ module Discordrb
     def edit_message(message, content: nil, embeds: nil, allowed_mentions: nil, builder: nil, components: nil)
       raise Discordrb::Errors::UnauthorizedWebhook unless @token
 
-      params = { content: content, embeds: embeds, allowed_mentions: allowed_mentions }.compact
+      params = { content:, embeds:, allowed_mentions: }.compact
 
       builder ||= Webhooks::Builder.new
       view ||= Webhooks::View.new

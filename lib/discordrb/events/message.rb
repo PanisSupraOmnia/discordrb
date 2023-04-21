@@ -35,8 +35,8 @@ module Discordrb::Events
     # @yield [embed] Yields the embed to allow for easy building inside a block.
     # @yieldparam embed [Discordrb::Webhooks::Embed] The embed from the parameters, or a new one.
     # @return [Message] The resulting message.
-    def send_embed(message = '', embed = nil, attachments = nil, tts = false, allowed_mentions = nil, message_reference = nil, components = nil, &block)
-      channel.send_embed(message, embed, attachments, tts, allowed_mentions, message_reference, components, &block)
+    def send_embed(message = '', embed = nil, attachments = nil, tts = false, allowed_mentions = nil, message_reference = nil, components = nil, &)
+      channel.send_embed(message, embed, attachments, tts, allowed_mentions, message_reference, components, &)
     end
 
     # Sends a temporary message to the channel this message was sent in, right now.
@@ -145,7 +145,7 @@ module Discordrb::Events
     # @example Send a file from disk
     #   event.send_file(File.open('rubytaco.png', 'r'))
     def send_file(file, caption: nil, filename: nil, spoiler: nil)
-      @message.channel.send_file(file, caption: caption, filename: filename, spoiler: spoiler)
+      @message.channel.send_file(file, caption:, filename:, spoiler:)
     end
 
     # Attaches a file to the message event and converts the message into

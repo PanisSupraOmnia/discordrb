@@ -148,25 +148,25 @@ module Discordrb
     # Sets the role name to something new
     # @param name [String] The name that should be set
     def name=(name)
-      update_role_data(name: name)
+      update_role_data(name:)
     end
 
     # Changes whether or not this role is displayed at the top of the user list
     # @param hoist [true, false] The value it should be changed to
     def hoist=(hoist)
-      update_role_data(hoist: hoist)
+      update_role_data(hoist:)
     end
 
     # Changes whether or not this role can be mentioned
     # @param mentionable [true, false] The value it should be changed to
     def mentionable=(mentionable)
-      update_role_data(mentionable: mentionable)
+      update_role_data(mentionable:)
     end
 
     # Sets the role colour to something new
     # @param colour [ColourRGB] The new colour
     def colour=(colour)
-      update_role_data(colour: colour)
+      update_role_data(colour:)
     end
 
     # Upload a role icon for servers with the ROLE_ICONS feature.
@@ -212,7 +212,7 @@ module Discordrb
       index = other ? roles.index { |role| role.id == other.id } + 1 : 1
       roles.insert(index, self)
 
-      updated_roles = roles.map.with_index { |role, position| { id: role.id, position: position } }
+      updated_roles = roles.map.with_index { |role, position| { id: role.id, position: } }
       @server.update_role_positions(updated_roles)
       index
     end

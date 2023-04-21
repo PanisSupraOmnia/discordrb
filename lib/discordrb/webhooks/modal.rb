@@ -37,15 +37,15 @@ class Discordrb::Webhooks::Modal
       style = TEXT_INPUT_STYLES[style] || style
 
       @components << {
-        style: style,
-        custom_id: custom_id,
+        style:,
+        custom_id:,
         type: COMPONENT_TYPES[:text_input],
-        label: label,
-        min_length: min_length,
-        max_length: max_length,
-        required: required,
-        value: value,
-        placeholder: placeholder
+        label:,
+        min_length:,
+        max_length:,
+        required:,
+        value:,
+        placeholder:
       }
     end
 

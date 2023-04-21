@@ -52,7 +52,7 @@ class Discordrb::Webhooks::View
                 emoji&.to_h
               end
 
-      @components << { type: COMPONENT_TYPES[:button], label: label, emoji: emoji, style: style, custom_id: custom_id, disabled: disabled, url: url }
+      @components << { type: COMPONENT_TYPES[:button], label:, emoji:, style:, custom_id:, disabled:, url: }
     end
 
     # Add a select string to this action row.
@@ -152,7 +152,7 @@ class Discordrb::Webhooks::View
                 emoji&.to_h
               end
 
-      @options << { label: label, value: value, description: description, emoji: emoji, default: default }
+      @options << { label:, value:, description:, emoji:, default: }
     end
 
     # @!visibility private

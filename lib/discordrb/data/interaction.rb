@@ -375,7 +375,7 @@ module Discordrb
     # @yieldparam (see Bot#edit_application_command)
     # @return (see Bot#edit_application_command)
     def edit(name: nil, description: nil, default_permission: nil, &block)
-      @bot.edit_application_command(@id, server_id: @server_id, name: name, description: description, default_permission: default_permission, &block)
+      @bot.edit_application_command(@id, server_id: @server_id, name:, description:, default_permission:, &block)
     end
 
     # Delete this application command.
@@ -469,7 +469,7 @@ module Discordrb
       # @param choices [Hash, nil] Available choices, mapped as `Name => Value`.
       # @return (see #option)
       def string(name, description, required: nil, choices: nil)
-        option(TYPES[:string], name, description, required: required, choices: choices)
+        option(TYPES[:string], name, description, required:, choices:)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -478,7 +478,7 @@ module Discordrb
       # @param choices [Hash, nil] Available choices, mapped as `Name => Value`.
       # @return (see #option)
       def integer(name, description, required: nil, choices: nil)
-        option(TYPES[:integer], name, description, required: required, choices: choices)
+        option(TYPES[:integer], name, description, required:, choices:)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -486,7 +486,7 @@ module Discordrb
       # @param required [true, false] Whether this option must be provided.
       # @return (see #option)
       def boolean(name, description, required: nil)
-        option(TYPES[:boolean], name, description, required: required)
+        option(TYPES[:boolean], name, description, required:)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -494,7 +494,7 @@ module Discordrb
       # @param required [true, false] Whether this option must be provided.
       # @return (see #option)
       def user(name, description, required: nil)
-        option(TYPES[:user], name, description, required: required)
+        option(TYPES[:user], name, description, required:)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -504,7 +504,7 @@ module Discordrb
       # @return (see #option)
       def channel(name, description, required: nil, types: nil)
         types = types&.collect { |type| type.is_a?(Numeric) ? type : CHANNEL_TYPES[type] }
-        option(TYPES[:channel], name, description, required: required, channel_types: types)
+        option(TYPES[:channel], name, description, required:, channel_types: types)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -512,7 +512,7 @@ module Discordrb
       # @param required [true, false] Whether this option must be provided.
       # @return (see #option)
       def role(name, description, required: nil)
-        option(TYPES[:role], name, description, required: required)
+        option(TYPES[:role], name, description, required:)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -520,7 +520,7 @@ module Discordrb
       # @param required [true, false] Whether this option must be provided.
       # @return (see #option)
       def mentionable(name, description, required: nil)
-        option(TYPES[:mentionable], name, description, required: required)
+        option(TYPES[:mentionable], name, description, required:)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -529,7 +529,7 @@ module Discordrb
       # @return (see #option)
       def number(name, description, required: nil, min_value: nil, max_value: nil, choices: nil)
         option(TYPES[:number], name, description,
-               required: required, min_value: min_value, max_value: max_value, choices: choices)
+               required:, min_value:, max_value:, choices:)
       end
 
       # @param name [String, Symbol] The name of the argument.
@@ -537,7 +537,7 @@ module Discordrb
       # @param required [true, false] Whether this option must be provided.
       # @return (see #option)
       def attachment(name, description, required: nil)
-        option(TYPES[:attachment], name, description, required: required)
+        option(TYPES[:attachment], name, description, required:)
       end
 
       # @!visibility private
@@ -551,11 +551,11 @@ module Discordrb
       # @return Hash
       def option(type, name, description, required: nil, choices: nil, options: nil, min_value: nil, max_value: nil,
                  channel_types: nil)
-        opt = { type: type, name: name, description: description }
-        choices = choices.map { |option_name, value| { name: option_name, value: value } } if choices
+        opt = { type:, name:, description: }
+        choices = choices.map { |option_name, value| { name: option_name, value: } } if choices
 
-        opt.merge!({ required: required, choices: choices, options: options, min_value: min_value,
-                     max_value: max_value, channel_types: channel_types }.compact)
+        opt.merge!({ required:, choices:, options:, min_value:,
+                     max_value:, channel_types: }.compact)
 
         @options << opt
         opt
@@ -647,7 +647,7 @@ module Discordrb
       private
 
       def create_entry(id, type, permission)
-        @permissions << { id: id, type: type, permission: permission }
+        @permissions << ({ id:, type:, permission: })
         self
       end
     end
@@ -767,7 +767,7 @@ module Discordrb
       # @param (see Interaction#send_message)
       # @yieldparam (see Interaction#send_message)
       def respond(content: nil, embeds: nil, allowed_mentions: nil, flags: 0, ephemeral: true, components: nil, &block)
-        @interaction.send_message(content: content, embeds: embeds, allowed_mentions: allowed_mentions, flags: flags, ephemeral: ephemeral, components: components, &block)
+        @interaction.send_message(content:, embeds:, allowed_mentions:, flags:, ephemeral:, components:, &block)
       end
 
       # Delete this message.
@@ -781,7 +781,7 @@ module Discordrb
       # @param allowed_mentions (see Interaction#send_message)
       # @yieldparam (see Interaction#send_message)
       def edit(content: nil, embeds: nil, allowed_mentions: nil, components: nil, &block)
-        @interaction.edit_message(@id, content: content, embeds: embeds, allowed_mentions: allowed_mentions, components: components, &block)
+        @interaction.edit_message(@id, content:, embeds:, allowed_mentions:, components:, &block)
       end
 
       # @return [Discordrb::Message]

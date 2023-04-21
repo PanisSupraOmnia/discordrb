@@ -109,7 +109,7 @@ describe Discordrb::PermissionCalculator do
         .with(:manage_messages, channel, role_b.id)
         .and_return(false)
 
-      subject.server = double('server', everyone_role: everyone_role)
+      subject.server = double('server', everyone_role:)
       subject.roles = [role_a, role_b]
       permission = subject.__send__(:defined_role_permission?, :manage_messages, channel)
       expect(permission).to eq true
@@ -125,7 +125,7 @@ describe Discordrb::PermissionCalculator do
       role_b = double('role b', id: 2, position: 2, permissions: Discordrb::Permissions.new)
       channel = double('channel')
 
-      subject.server = double('server', everyone_role: everyone_role)
+      subject.server = double('server', everyone_role:)
       subject.roles = [role_a, role_b]
 
       allow(subject).to receive(:permission_overwrite).and_return(nil)

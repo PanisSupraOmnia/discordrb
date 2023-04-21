@@ -317,7 +317,7 @@ module Discordrb
         client_id: @client_id,
         guild_id: server&.id,
         permissions: permission_bits,
-        redirect_uri: redirect_uri,
+        redirect_uri:,
         scope: scopes.join(' ')
       }.compact)
 
@@ -459,7 +459,7 @@ module Discordrb
       end
 
       channel = channel.resolve_id
-      response = API::Channel.upload_file(token, channel, file, caption: caption, tts: tts)
+      response = API::Channel.upload_file(token, channel, file, caption:, tts:)
       Message.new(JSON.parse(response), self)
     end
 

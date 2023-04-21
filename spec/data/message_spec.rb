@@ -4,9 +4,9 @@ require 'discordrb'
 
 describe Discordrb::Message do
   let(:server) { double('server') }
-  let(:channel) { double('channel', server: server) }
+  let(:channel) { double('channel', server:) }
   let(:token) { double('token') }
-  let(:bot) { double('bot', channel: channel, token: token) }
+  let(:bot) { double('bot', channel:, token:) }
   let(:server_id) { instance_double('String', 'server_id') }
   let(:channel_id) { instance_double('String', 'channel_id') }
   let(:message_id) { instance_double('String', 'message_id') }
@@ -227,7 +227,7 @@ describe Discordrb::Message do
 
       it 'converts it to a hash to set the replied_user key' do
         expect(message).to receive(:respond).with(content, false, nil, nil, hash, message, nil)
-        message.reply!(content, allowed_mentions: allowed_mentions, mention_user: mention_user)
+        message.reply!(content, allowed_mentions:, mention_user:)
       end
     end
   end

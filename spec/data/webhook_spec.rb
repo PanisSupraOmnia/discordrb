@@ -6,8 +6,8 @@ describe Discordrb::Webhook do
   let(:token) { double('token') }
   let(:reason) { double('reason') }
   let(:server) { double('server', member: double) }
-  let(:channel) { double('channel', server: server) }
-  let(:bot) { double('bot', channel: channel, token: token) }
+  let(:channel) { double('channel', server:) }
+  let(:bot) { double('bot', channel:, token:) }
 
   subject(:webhook) do
     described_class.new(webhook_data, bot)
@@ -52,7 +52,7 @@ describe Discordrb::Webhook do
     context 'when webhook is from auth' do
       context 'when owner cached' do
         let(:member) { double('member') }
-        let(:server) { double('server', member: member) }
+        let(:server) { double('server', member:) }
 
         it 'sets owner from cache' do
           expect(webhook.owner).to eq member
@@ -62,7 +62,7 @@ describe Discordrb::Webhook do
       context 'when owner not cached' do
         let(:server) { double('server', member: nil) }
         let(:user) { double('user') }
-        let(:bot) { double('bot', channel: channel, ensure_user: user) }
+        let(:bot) { double('bot', channel:, ensure_user: user) }
 
         it 'gets user' do
           expect(webhook.owner).to eq user
@@ -101,8 +101,8 @@ describe Discordrb::Webhook do
 
   describe '#update' do
     it 'calls update_webhook' do
-      expect(webhook).to receive(:update_webhook).with(avatar: avatar_string, channel_id: edited_webhook_channel_id.to_i, name: edited_webhook_name, reason: reason)
-      webhook.update(avatar: avatar_string, channel: edited_webhook_channel_id, name: edited_webhook_name, reason: reason)
+      expect(webhook).to receive(:update_webhook).with(avatar: avatar_string, channel_id: edited_webhook_channel_id.to_i, name: edited_webhook_name, reason:)
+      webhook.update(avatar: avatar_string, channel: edited_webhook_channel_id, name: edited_webhook_name, reason:)
     end
   end
 
@@ -276,9 +276,9 @@ describe Discordrb::Webhook do
       content = instance_double(String)
       username = instance_double(String)
 
-      builder = Discordrb::Webhooks::Builder.new(content: content)
+      builder = Discordrb::Webhooks::Builder.new(content:)
 
-      webhook.execute(username: username, builder: builder, wait: false)
+      webhook.execute(username:, builder:, wait: false)
 
       expect(Discordrb::API::Webhook).to have_received(:token_execute_webhook).with(anything, anything, false, content, username, any_args)
     end
@@ -337,9 +337,9 @@ describe Discordrb::Webhook do
       content = instance_double(String)
       embeds = instance_double(Array)
 
-      builder = Discordrb::Webhooks::Builder.new(content: content)
+      builder = Discordrb::Webhooks::Builder.new(content:)
 
-      webhook.edit_message(message, embeds: embeds, builder: builder)
+      webhook.edit_message(message, embeds:, builder:)
 
       expect(Discordrb::API::Webhook).to have_received(:token_edit_message).with(webhook.token, webhook.id, message_id, content, embeds, nil, [])
     end

@@ -113,7 +113,7 @@ module Discordrb::Commands
       # Check whether the bucket actually exists
       return false unless @buckets && @buckets[key]
 
-      @buckets[key].rate_limited?(thing, increment: increment)
+      @buckets[key].rate_limited?(thing, increment:)
     end
 
     # Cleans all buckets

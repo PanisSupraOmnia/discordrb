@@ -62,7 +62,7 @@ module Discordrb::Webhooks
     # @param channel_id [String, Integer, nil] The channel to move the webhook to.
     # @return [RestClient::Response] the response returned by Discord.
     def modify(name: nil, avatar: nil, channel_id: nil)
-      RestClient.patch(@url, { name: name, avatar: avatarise(avatar), channel_id: channel_id }.compact.to_json, content_type: :json)
+      RestClient.patch(@url, { name:, avatar: avatarise(avatar), channel_id: }.compact.to_json, content_type: :json)
     end
 
     # Delete this webhook.
@@ -94,7 +94,7 @@ module Discordrb::Webhooks
 
       yield builder if block_given?
 
-      data = builder.to_json_hash.merge({ content: content, embeds: embeds, allowed_mentions: allowed_mentions }.compact)
+      data = builder.to_json_hash.merge({ content:, embeds:, allowed_mentions: }.compact)
       RestClient.patch("#{@url}/messages/#{message_id}", data.compact.to_json, content_type: :json)
     end
 

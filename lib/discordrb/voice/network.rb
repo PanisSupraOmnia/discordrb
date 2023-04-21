@@ -200,10 +200,10 @@ module Discordrb::Voice
       @client.send({
         op: 0,
         d: {
-          server_id: server_id,
+          server_id:,
           user_id: bot_user_id,
-          session_id: session_id,
-          token: token
+          session_id:,
+          token:
         }
       }.to_json)
     end
@@ -219,8 +219,8 @@ module Discordrb::Voice
           protocol: 'udp',
           data: {
             address: ip,
-            port: port,
-            mode: mode
+            port:,
+            mode:
           }
         }
       }.to_json)

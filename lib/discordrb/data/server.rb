@@ -646,7 +646,7 @@ module Discordrb
     # Sets the server's name.
     # @param name [String] The new server name.
     def name=(name)
-      update_server_data(name: name)
+      update_server_data(name:)
     end
 
     # @return [Array<VoiceRegion>] collection of available voice regions to this guild
@@ -698,7 +698,7 @@ module Discordrb
     # Sets the amount of time after which a user gets moved into the AFK channel.
     # @param afk_timeout [Integer] The AFK timeout, in seconds.
     def afk_timeout=(afk_timeout)
-      update_server_data(afk_timeout: afk_timeout)
+      update_server_data(afk_timeout:)
     end
 
     # A map of possible server verification levels to symbol names

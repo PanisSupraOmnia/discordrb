@@ -238,8 +238,8 @@ module Discordrb::API
       nil,
       :post,
       "#{api_base}/auth/login",
-      email: email,
-      password: password
+      email:,
+      password:
     )
   end
 
@@ -262,7 +262,7 @@ module Discordrb::API
       nil,
       :post,
       "#{api_base}/oauth2/applications",
-      { name: name, redirect_uris: redirect_uris }.to_json,
+      { name:, redirect_uris: }.to_json,
       Authorization: token,
       content_type: :json
     )
@@ -275,7 +275,7 @@ module Discordrb::API
       nil,
       :put,
       "#{api_base}/oauth2/applications",
-      { name: name, redirect_uris: redirect_uris, description: description, icon: icon }.to_json,
+      { name:, redirect_uris:, description:, icon: }.to_json,
       Authorization: token,
       content_type: :json
     )

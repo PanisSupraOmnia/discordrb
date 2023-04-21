@@ -298,7 +298,7 @@ module Discordrb
       # we have sorted them in the above logic
       ids.each_with_index do |id, pos|
         # These keys are present in each element
-        hash = { id: id, position: pos }
+        hash = { id:, position: pos }
 
         # Conditionally add `lock_permissions` and `parent_id` if we're
         # iterating past ourselves
@@ -320,7 +320,7 @@ module Discordrb
     def nsfw=(nsfw)
       raise ArgumentError, 'nsfw value must be true or false' unless nsfw.is_a?(TrueClass) || nsfw.is_a?(FalseClass)
 
-      update_channel_data(nsfw: nsfw)
+      update_channel_data(nsfw:)
     end
 
     # This channel's permission overwrites
@@ -495,7 +495,7 @@ module Discordrb
     # @example Send a file from disk
     #   channel.send_file(File.open('rubytaco.png', 'r'))
     def send_file(file, caption: nil, tts: false, filename: nil, spoiler: nil)
-      @bot.send_file(@id, file, caption: caption, tts: tts, filename: filename, spoiler: spoiler)
+      @bot.send_file(@id, file, caption:, tts:, filename:, spoiler:)
     end
 
     # Deletes a message on this channel. Mostly useful in case a message needs to be deleted when only the ID is known
@@ -513,7 +513,7 @@ module Discordrb
     # Sets this channel's name. The name must be alphanumeric with dashes, unless this is a voice channel (then there are no limitations)
     # @param name [String] The new name.
     def name=(name)
-      update_channel_data(name: name)
+      update_channel_data(name:)
     end
 
     # Sets this channel's topic.
@@ -521,7 +521,7 @@ module Discordrb
     def topic=(topic)
       raise 'Tried to set topic on voice channel' if voice?
 
-      update_channel_data(topic: topic)
+      update_channel_data(topic:)
     end
 
     # Sets this channel's bitrate.
@@ -529,7 +529,7 @@ module Discordrb
     def bitrate=(bitrate)
       raise 'Tried to set bitrate on text channel' if text?
 
-      update_channel_data(bitrate: bitrate)
+      update_channel_data(bitrate:)
     end
 
     # Sets this channel's user limit.
@@ -545,7 +545,7 @@ module Discordrb
     # Sets this channel's position in the list.
     # @param position [Integer] The new position.
     def position=(position)
-      update_channel_data(position: position)
+      update_channel_data(position:)
     end
 
     # Defines a permission overwrite for this channel that sets the specified thing to the specified allow and deny
@@ -719,15 +719,15 @@ module Discordrb
     # {Discordrb::Events::MessageEvent} await with the `in` attribute as this channel.
     # @see Bot#add_await
     # @deprecated Will be changed to blocking behavior in v4.0. Use {#await!} instead.
-    def await(key, attributes = {}, &block)
-      @bot.add_await(key, Discordrb::Events::MessageEvent, { in: @id }.merge(attributes), &block)
+    def await(key, attributes = {}, &)
+      @bot.add_await(key, Discordrb::Events::MessageEvent, { in: @id }.merge(attributes), &)
     end
 
     # Add a blocking {Await} for a message in this channel. This is identical in functionality to adding a
     # {Discordrb::Events::MessageEvent} await with the `in` attribute as this channel.
     # @see Bot#add_await!
-    def await!(attributes = {}, &block)
-      @bot.add_await!(Discordrb::Events::MessageEvent, { in: @id }.merge(attributes), &block)
+    def await!(attributes = {}, &)
+      @bot.add_await!(Discordrb::Events::MessageEvent, { in: @id }.merge(attributes), &)
     end
 
     # Creates a new invite to this channel.

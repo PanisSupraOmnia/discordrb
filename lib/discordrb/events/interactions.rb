@@ -37,32 +37,32 @@ module Discordrb::Events
     # (see Interaction#respond)
     def respond(content: nil, tts: nil, embeds: nil, allowed_mentions: nil, flags: 0, ephemeral: nil, wait: false, components: nil, &block)
       @interaction.respond(
-        content: content, tts: tts, embeds: embeds, allowed_mentions: allowed_mentions,
-        flags: flags, ephemeral: ephemeral, wait: wait, components: components, &block
+        content:, tts:, embeds:, allowed_mentions:,
+        flags:, ephemeral:, wait:, components:, &block
       )
     end
 
     # (see Interaction#defer)
     def defer(flags: 0, ephemeral: true)
-      @interaction.defer(flags: flags, ephemeral: ephemeral)
+      @interaction.defer(flags:, ephemeral:)
     end
 
     # (see Interaction#update_message)
     def update_message(content: nil, tts: nil, embeds: nil, allowed_mentions: nil, flags: 0, ephemeral: nil, wait: false, components: nil, &block)
       @interaction.update_message(
-        content: content, tts: tts, embeds: embeds, allowed_mentions: allowed_mentions,
-        flags: flags, ephemeral: ephemeral, wait: wait, components: components, &block
+        content:, tts:, embeds:, allowed_mentions:,
+        flags:, ephemeral:, wait:, components:, &block
       )
     end
 
     # (see Interaction#show_modal)
     def show_modal(title:, custom_id:, components: nil, &block)
-      @interaction.show_modal(title: title, custom_id: custom_id, components: components, &block)
+      @interaction.show_modal(title:, custom_id:, components:, &block)
     end
 
     # (see Interaction#edit_response)
     def edit_response(content: nil, embeds: nil, allowed_mentions: nil, components: nil, &block)
-      @interaction.edit_response(content: content, embeds: embeds, allowed_mentions: allowed_mentions, components: components, &block)
+      @interaction.edit_response(content:, embeds:, allowed_mentions:, components:, &block)
     end
 
     # (see Interaction#delete_response)
@@ -72,12 +72,12 @@ module Discordrb::Events
 
     # (see Interaction#send_message)
     def send_message(content: nil, embeds: nil, tts: false, allowed_mentions: nil, flags: 0, ephemeral: nil, components: nil, &block)
-      @interaction.send_message(content: content, embeds: embeds, tts: tts, allowed_mentions: allowed_mentions, flags: flags, ephemeral: ephemeral, components: components, &block)
+      @interaction.send_message(content:, embeds:, tts:, allowed_mentions:, flags:, ephemeral:, components:, &block)
     end
 
     # (see Interaction#edit_message)
     def edit_message(message, content: nil, embeds: nil, allowed_mentions: nil, &block)
-      @interaction.edit_message(message, content: content, embeds: embeds, allowed_mentions: allowed_mentions, &block)
+      @interaction.edit_message(message, content:, embeds:, allowed_mentions:, &block)
     end
 
     # (see Interaction#delete_message)
@@ -455,7 +455,7 @@ module Discordrb::Events
 
       users   = data['data']['resolved']['users'].keys.map { |e| bot.user(e) }
       roles   = data['data']['resolved']['roles'] ? data['data']['resolved']['roles'].keys.map { |e| bot.server(data['guild_id']).role(e) } : []
-      @values = { users: users, roles: roles }
+      @values = { users:, roles: }
     end
   end
 

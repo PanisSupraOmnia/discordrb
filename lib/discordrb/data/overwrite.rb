@@ -98,7 +98,7 @@ module Discordrb
     # @!visibility private
     def to_hash
       {
-        id: id,
+        id:,
         type: TYPES[type],
         allow: allow.bits,
         deny: deny.bits

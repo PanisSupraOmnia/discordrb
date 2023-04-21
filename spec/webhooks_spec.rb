@@ -91,7 +91,7 @@ describe Discordrb::Webhooks do
 
     describe '#initialize' do
       it 'generates a url from id and token' do
-        client = described_class.new(id: id, token: token)
+        client = described_class.new(id:, token:)
         url = client.instance_variable_get(:@url)
 
         expect(url).to eq "https://discord.com/api/v8/webhooks/#{id}/#{token}"
@@ -169,7 +169,7 @@ describe Discordrb::Webhooks do
       it 'sends a DELETE request to the URL' do
         reason = instance_double(String)
 
-        subject.delete(reason: reason)
+        subject.delete(reason:)
 
         expect(RestClient).to have_received(:delete).with(provided_url, 'X-Audit-Log-Reason': reason)
       end
