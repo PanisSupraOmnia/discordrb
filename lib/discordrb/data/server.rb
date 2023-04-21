@@ -830,11 +830,11 @@ module Discordrb
       @afk_timeout = new_data[:afk_timeout] || new_data['afk_timeout'] || @afk_timeout
 
       afk_channel_id = new_data[:afk_channel_id] || new_data['afk_channel_id'] || @afk_channel
-      @afk_channel_id = afk_channel_id.nil? ? nil : afk_channel_id.resolve_id
+      @afk_channel_id = afk_channel_id&.resolve_id
       widget_channel_id = new_data[:widget_channel_id] || new_data['widget_channel_id'] || @widget_channel
-      @widget_channel_id = widget_channel_id.nil? ? nil : widget_channel_id.resolve_id
+      @widget_channel_id = widget_channel_id&.resolve_id
       system_channel_id = new_data[:system_channel_id] || new_data['system_channel_id'] || @system_channel
-      @system_channel_id = system_channel_id.nil? ? nil : system_channel_id.resolve_id
+      @system_channel_id = system_channel_id&.resolve_id
 
       @widget_enabled = new_data[:widget_enabled] || new_data['widget_enabled']
       @splash = new_data[:splash_id] || new_data['splash_id'] || @splash_id
