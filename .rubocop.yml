@@ -10,6 +10,10 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.0
 
+# Specify dev dependencies in gemspec
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
 # Disable line length checks
 Layout/LineLength:
   Enabled: false
