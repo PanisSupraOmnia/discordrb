@@ -369,7 +369,7 @@ module Discordrb
 
     # @return [true, false, nil] whether this channels permissions match the permission overwrites of the category that it's in, or nil if it is not in a category
     def synchronized?
-      return unless parent
+      return unless parent # rubocop:todo Style/ReturnNilInPredicateMethodDefinition
 
       permission_overwrites == parent.permission_overwrites
     end
