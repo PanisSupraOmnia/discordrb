@@ -71,11 +71,11 @@ describe Discordrb::Commands::CommandBot, order: :defined do
     allow(event).to receive(:channel) { channel }
   end
 
-  def command_event_double_for_channel(channel_id = default_channel_id, **kwargs)
+  def command_event_double_for_channel(channel_id = default_channel_id, **)
     command_event_double.tap do |event|
       append_author_to_double(event)
       append_bot_to_double(event)
-      append_channel_to_double(event, channel_id, **kwargs)
+      append_channel_to_double(event, channel_id, **)
     end
   end
 
